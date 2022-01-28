@@ -1,0 +1,8 @@
+1) Add a license
+2) Add a README.md 
+3) Add !startseason
+4) Add !endseason
+5) Refactor command and argument parsing
+6) Add !report command
+7) DIscord rich embeds 
+8) Refactor rest of code for easier maintenance
