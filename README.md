@@ -15,7 +15,7 @@ And
 
 `npm install`
 
-Then rename .env.example to .env and plugin in the enviroment variables
+Then rename .env.example to .env and plug in the enviroment variables
 
 ### Usage
 
