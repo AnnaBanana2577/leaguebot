@@ -1,8 +1,6 @@
-1) Add a license
-2) Add a README.md 
-3) Add !startseason
-4) Add !endseason
+1) Add !startseason command
+2) Add !endseason command
+3) Add !report command
+4) Change messages to utilize Rich Embeds
 5) Refactor command and argument parsing
-6) Add !report command
-7) DIscord rich embeds 
-8) Refactor rest of code for easier maintenance
+7) Refactor rest of code for easier maintenance
