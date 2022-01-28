@@ -15,6 +15,14 @@ And
 
 `npm install`
 
+Then start an autoreloading local dev server
+
+`npm run dev`
+
+For production
+
+`npm run prod`
+
 Then rename .env.example to .env and plug in the enviroment variables
 
 ### Usage
