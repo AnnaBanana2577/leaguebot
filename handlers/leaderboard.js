@@ -1,3 +1,5 @@
+const { MessageEmbed } = require('discord.js');
+
 module.exports = (msg) => {
     let out = '';
 
@@ -9,5 +11,11 @@ module.exports = (msg) => {
         if (count > 10) { break; }
     }
 
-    msg.channel.send("```Top 10 Players Currently: \n\n" + out + "```");
+    const exampleEmbed = new MessageEmbed()
+        .setColor('#0099ff')
+        .setTitle('Top 10 Players')
+        .setDescription(out);
+
+
+        msg.channel.send({ embeds: [exampleEmbed] });
 };

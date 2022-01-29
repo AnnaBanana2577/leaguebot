@@ -2,6 +2,7 @@
 require('dotenv').config();
 const isArgs = require('./helpers/isArgs.js');
 const isStaff = require('./helpers/isStaff');
+const { MessageEmbed } = require('discord.js');
 const isSeasonrunning = require('./helpers/isSeasonrunning.js');
 const fs = require('fs');
 const Discord = require('discord.js');
@@ -84,11 +85,15 @@ client.on('message', message => {
             if (!staff) {break;}
             handleSetstatus(message, args);
             break;
-        case 'test':
-            const channel = client.channels.cache.get(process.env.CHANNEL_LEAGUESTATUS_ID);
-            channel.send('Test');
-    }
-  });
+        //case 'test':
+          //  const exampleEmbed = new MessageEmbed()
+           // .setColor('#0099ff')
+          //  .setTitle('How This Works')
+          //  .setDescription("**__League Format__** \n The league will run in periods of 4 weeks (called seasons). During the season, players may play matches of 3v3 capture the flag by typing !add. Once 6 players are added, the match begins. The bot will DM each of the 6players with server name and password information. The bot will randomly choose 1 player to be the 'Captain'. The captain is responsible for creating the sevrer, and uploading a screenshot of the scoreboard at the end of the game to #match-reports. \n\n **__Awarding Points__**\nAfter screenshots are reported, the League Staff reviews the match report and awards points as follows \n\n1 point to every player\n2 points to every player on the winning tream\n2 Points to the player on the winning team with the most flag captures \n\n**__Bot Commands__**\n!add to add yourself to the match queue\n!del to remove yourself from the match queue\n!status to check the current status of the match queue\n!leaderboard to show the current leaderboard\n!report to report the match result with a screenshot\n\n**__Staff Bot Commands__**\n!startseason to start a new season\n!endseason to end the current season\n!setstatus to set the league status\!award to award points based on match report");
+          //  const channel = client.channels.cache.get('936017207660531712');
+          //  channel.send({ embeds: [exampleEmbed] });
+
+}});
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}`);

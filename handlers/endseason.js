@@ -1,4 +1,6 @@
 const writeDatabase = require('../helpers/writeDatbase.js');
+const { MessageEmbed } = require('discord.js');
+
 
 module.exports = (msg) => {
     msg.channel.send(`**SEASON ${league.number} HAS ENDED**`)
@@ -12,15 +14,25 @@ module.exports = (msg) => {
 
     const channel = client.channels.cache.get(process.env.CHANNEL_LEAGUESTATUS_ID);
     channel.messages.fetch(process.env.MESSAGE_STATUS_ID).then( message => {
-        const stat = `League Status: Inactive | Season ${league.number} starts soon`;
-        message.edit(stat);
-        league.status = stat;
+
+
+        const exampleEmbed = new MessageEmbed()
+        .setColor('e4d00a')
+        .setTitle('League Status')
+        .setDescription('Inactive');
+        message.edit({embeds: [exampleEmbed]});
+        league.status = 'Inactive';
         writeDatabase();
     });
 
     const channel2 = client.channels.cache.get(process.env.CHANNEL_LEAGUESTATUS_ID);
     channel2.messages.fetch(process.env.MESSAGE_LEADERBOARD_ID).then( message => {
-        message.edit("```Top 10 Players Currently: \n\n The new season hasn't started here, once it starts you'll see the leaderboard here```");
+        const exampleEmbed = new MessageEmbed()
+        .setColor('#0099ff')
+        .setTitle('Top 10 Players')
+        .setDescription('Noone yet');
+
+        message.edit({ embeds: [exampleEmbed] });
     });
 
 }

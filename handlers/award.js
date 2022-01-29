@@ -1,4 +1,5 @@
 const writeDatabase = require('../helpers/writeDatbase');
+const { MessageEmbed } = require('discord.js');
 
 module.exports = (msg, args) => {
     if (args.length !== 2) {
@@ -21,7 +22,6 @@ module.exports = (msg, args) => {
         }
         writeDatabase();
         msg.channel.send(`${points} points have been awarded to ${user}`);
-        
         const channel = client.channels.cache.get(process.env.CHANNEL_LEAGUESTATUS_ID);
         channel.messages.fetch(process.env.MESSAGE_LEADERBOARD_ID).then( message => {
             let out = '';
@@ -32,7 +32,11 @@ module.exports = (msg, args) => {
                 count += 1;
                 if (count > 10) { break; }
             }
-            message.edit("```Top 10 Players Currently: \n\n" + out + "```");
+            const exampleEmbed = new MessageEmbed()
+            .setColor('#0099ff')
+            .setTitle('Top 10 Players')
+            .setDescription(out);
+                message.edit({embeds: [exampleEmbed]});
         });
-    }
-};
+
+}};
