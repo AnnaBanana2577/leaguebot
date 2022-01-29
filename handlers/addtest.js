@@ -1,13 +1,19 @@
+const mention = require('../helpers/mention.js');
+const startMatch = require('../helpers/startMatch.js');
+const getStatus = require('../helpers/getStatus.js');
+
 module.exports = (msg) => {
     let player = {
         name: 'TestPlayer',
-        id: '1',
+        id: '000',
         captain: false
     };
     gameQueue.push(player);
-    msg.channel.send(`Test Player has been added to the match queue.`);
-    getStatus(msg);
     if(gameQueue.length == 6) {
         startMatch(msg);
+    }
+    else {
+        msg.channel.send(`Test Player has been added to the match queue.`);
+        getStatus(msg);
     }
 }

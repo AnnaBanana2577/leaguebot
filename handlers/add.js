@@ -1,6 +1,6 @@
-const startMatch = (msg) => {
-    msg.channel.send(`\`The queue is full and the match has started! Please check your DM for instructions on joining\``);
-};
+const mention = require('../helpers/mention.js');
+const startMatch = require('../helpers/startMatch.js');
+const getStatus = require('../helpers/getStatus.js');
 
 module.exports = (msg) => {
     let players = gameQueue.length;
@@ -30,10 +30,12 @@ module.exports = (msg) => {
                 captain: isCaptain
             }
             gameQueue.push(player);
-            msg.channel.send(`${mention(msg.author.id)} has been added to the match queue.`);
-            getStatus(msg);
             if(gameQueue.length == 6) {
                 startMatch(msg);
+            }
+            else {
+                msg.channel.send(`${mention(msg.author.id)} has been added to the match queue.`);
+                getStatus(msg);
             }
         }
     }

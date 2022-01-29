@@ -1,3 +1,5 @@
+const getStatus = require('../helpers/getStatus.js');
+
 module.exports = (msg) => {
     let newPlayer = msg.author.id;
     let isAdded = false;

@@ -1,3 +1,13 @@
 module.exports = (msg) => {
-    msg.channel.send(`**Anna:** 1,000,000,000,000,000,000,000 \n**Everyone else:** 0`);
+    let out = '';
+
+    const topPlayers = Object.entries(leaderboard).sort((a,b) => b[1]-a[1]);
+    let count = 1;
+    for(let player of topPlayers){
+        out += `${count}) ${player[0]} - ${player[1]} \n`;
+        count += 1;
+        if (count > 10) { break; }
+    }
+
+    msg.channel.send("```Top 10 Players Currently: \n\n" + out + "```");
 };

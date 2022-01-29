@@ -2,11 +2,9 @@
 require('dotenv').config();
 const fs = require('fs');
 const Discord = require('discord.js');
-const client = new Discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES"] });
-
-//Load Data
-let leaderboard = require('./data/leaderboard.json');
-let league = require('./data/league.json');
+global.client = new Discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES"] });
+global.leaderboard = require('./data/leaderboard.json');
+global.league = require('./data/league.json');
 
 //Load Handlers
 const handleAdd = require('./handlers/add.js');
@@ -21,12 +19,12 @@ const handleStartseason = require('./handlers/startseason.js');
 const handleEndseason = require('./handlers/endseason.js');
 
 //Global Vars
-var gameQueue = [];
+global.gameQueue = [];
 
 //Parse Commands And Arguments
 client.on('message', message => {
     if (!message.content.startsWith('!')) return;
-    if (message.author.id == '936018873021517846') return;
+    if (message.author.id == process.env.BOT_ID) return;
   
     let args = message.content.trim().split(/ +/g);
     const cmd = args[0].slice(1).toLowerCase();
@@ -38,34 +36,34 @@ client.on('message', message => {
     
     switch(cmd){
         case 'help':
-            handleHelp(msg);
+            handleHelp(message);
             break;
         case 'add':
-            handleAdd(msg)
+            handleAdd(message)
             break;
         case 'addtest':
-            handleAddtest(msg)
+            handleAddtest(message)
             break;
         case 'del':
-            handleDel(msg);
+            handleDel(message);
             break;
         case 'status':
-            handleStatus(msg);
+            handleStatus(message);
             break;
         case 'leaderboard':
-            handleLeaderboard(msg);
+            handleLeaderboard(message);
             break;
         case 'report':
-            handleReport(msg);
+            handleReport(message);
             break;
         case 'award':
-            handleAward(msg);
+            handleAward(message, args);
             break;
         case 'startseason':
-            handleStartseason(msg);
+            handleStartseason(message);
             break;
         case 'endseason':
-            handleEndseason(msg);
+            handleEndseason(message);
             break;
     }
   });
