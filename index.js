@@ -1,5 +1,8 @@
 //Load Dependencies
 require('dotenv').config();
+const isArgs = require('./helpers/isArgs.js');
+const isStaff = require('./helpers/isStaff');
+const isSeasonrunning = require('./helpers/isSeasonrunning.js');
 const fs = require('fs');
 const Discord = require('discord.js');
 global.client = new Discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES"] });
@@ -17,6 +20,7 @@ const handleAddtest = require('./handlers/addtest.js');
 const handleHelp = require('./handlers/help.js');
 const handleStartseason = require('./handlers/startseason.js');
 const handleEndseason = require('./handlers/endseason.js');
+const handleSetstatus = require('./handlers/setStatus.js');
 
 //Global Vars
 global.gameQueue = [];
@@ -31,7 +35,7 @@ client.on('message', message => {
     args.shift();
   
     const argsNum = args.length;
-    const isAdmin = false;
+    const staff = isStaff(message);
     //add check for admin and set = isAdmin
     
     switch(cmd){
@@ -39,32 +43,50 @@ client.on('message', message => {
             handleHelp(message);
             break;
         case 'add':
+            if (!isSeasonrunning(message)) {break;}
             handleAdd(message)
             break;
         case 'addtest':
+            if (!isSeasonrunning(message)) {break;}
             handleAddtest(message)
             break;
         case 'del':
+            if (!isSeasonrunning(message)) {break;}
             handleDel(message);
             break;
         case 'status':
+            if (!isSeasonrunning(message)) {break;}
             handleStatus(message);
             break;
         case 'leaderboard':
+            if (!isSeasonrunning(message)) {break;}
             handleLeaderboard(message);
             break;
         case 'report':
+            if (!isSeasonrunning(message)) {break;}
             handleReport(message);
             break;
         case 'award':
+            if (!isSeasonrunning(message)) {break;}
+            if (!isArgs(argsNum, 2)) {break;}
+            if (!staff) {break;}
             handleAward(message, args);
             break;
         case 'startseason':
+            if (!staff) {break;}
             handleStartseason(message);
             break;
         case 'endseason':
+            if (!staff) {break;}
             handleEndseason(message);
             break;
+        case 'setstatus':
+            if (!staff) {break;}
+            handleSetstatus(message, args);
+            break;
+        case 'test':
+            const channel = client.channels.cache.get(process.env.CHANNEL_LEAGUESTATUS_ID);
+            channel.send('Test');
     }
   });
 

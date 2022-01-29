@@ -21,25 +21,18 @@ module.exports = (msg, args) => {
         }
         writeDatabase();
         msg.channel.send(`${points} points have been awarded to ${user}`);
-        //Add message to #league-standings
-        //message id = 936468562367885342
-        //channel id = 936033981114224710
-        const channel = client.channels.cache.get("936033981114224710");
-        channel.messages.fetch({ limit: 100 }).then(messages => {
-            console.log(`Received ${messages.size} messages`);
-            //Iterate through the messages here with the variable "messages".
-            messages.forEach(message => message.delete())
-          })
-
-        let out = '';
-        const topPlayers = Object.entries(leaderboard).sort((a,b) => b[1]-a[1]);
-        let count = 1;
-        for(let player of topPlayers){
-            out += `${count}) ${player[0]} - ${player[1]} \n`;
-            count += 1;
-            if (count > 10) { break; }
-        }
-        //msg.channel.send("```Top 10 Players Currently: \n\n" + out + "```");
-        channel.send("```Top 10 Players Currently: \n\n" + out + "```");
+        
+        const channel = client.channels.cache.get(process.env.CHANNEL_LEAGUESTATUS_ID);
+        channel.messages.fetch(process.env.MESSAGE_LEADERBOARD_ID).then( message => {
+            let out = '';
+            const topPlayers = Object.entries(leaderboard).sort((a,b) => b[1]-a[1]);
+            let count = 1;
+            for(let player of topPlayers){
+                out += `${count}) ${player[0]} - ${player[1]} \n`;
+                count += 1;
+                if (count > 10) { break; }
+            }
+            message.edit("```Top 10 Players Currently: \n\n" + out + "```");
+        });
     }
 };

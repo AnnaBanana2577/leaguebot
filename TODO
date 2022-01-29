@@ -1,6 +1,4 @@
 1) Add !startseason command
-2) Add !endseason command
-3) Add !report command
-4) Change messages to utilize Rich Embeds
-5) Refactor command and argument parsing
-7) Refactor rest of code for easier maintenance
+2) Add !endseason command & !status
+3) Change messages to utilize Rich Embeds
+4) Add !report command
