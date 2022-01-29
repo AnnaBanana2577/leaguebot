@@ -17,5 +17,5 @@ module.exports = (msg) => {
         .setDescription(out);
 
 
-        msg.channel.send({ embeds: [exampleEmbed] });
+        genChannel.send({ embeds: [exampleEmbed] });
 };

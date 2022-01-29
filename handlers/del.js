@@ -11,11 +11,11 @@ module.exports = (msg) => {
 
     if (isAdded) {
         gameQueue = gameQueue.filter(function(ob){ return(ob.id !== msg.author.id) });
-        msg.channel.send("You've been removed from the match queue.");
+        genChannel.send("You've been removed from the match queue.");
         getStatus(msg);
     }
     else {
-        msg.channel.send("You are not in the queue.");
+        genChannel.send("You are not in the queue.");
         getStatus(msg);
     }
 };

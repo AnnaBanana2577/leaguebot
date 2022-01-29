@@ -17,7 +17,7 @@ module.exports = (msg) => {
         });
 
         if (isAlreadyAdded) {
-            msg.channel.send(`You are already in the queue.`);
+            genChannel.send(`You are already in the queue.`);
             getStatus(msg);
         }
         else {
@@ -34,12 +34,12 @@ module.exports = (msg) => {
                 startMatch(msg);
             }
             else {
-                msg.channel.send(`${mention(msg.author.id)} has been added to the match queue.`);
+                genChannel.send(`${mention(msg.author.id)} has been added to the match queue.`);
                 getStatus(msg);
             }
         }
     }
     else {
-        msg.channel.send(`Sorry ${mention(msg.author.id)}, the game queue is full right now.`);
+        genChannel.send(`Sorry ${mention(msg.author.id)}, the game queue is full right now.`);
     }
 };

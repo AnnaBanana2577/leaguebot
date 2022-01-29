@@ -1,19 +1,15 @@
-const { MessageEmbed } = require('discord.js');
-const writeDatbase = require('../helpers/writeDatbase');
-
+const updateStatusChannel = require("../helpers/updateStatusChannel");
+const {MessageEmbed} = require('discord.js');
 
 module.exports = (msg, args) => {
-    const channel = client.channels.cache.get(process.env.CHANNEL_LEAGUESTATUS_ID);
-    channel.messages.fetch(process.env.MESSAGE_STATUS_ID).then( message => {
-            const exampleEmbed = new MessageEmbed()
-            .setColor('FF0000')
-            .setTitle('League Status')
-            .setDescription(args.join(' '));
-            message.edit({embeds: [exampleEmbed]});
-      //  message.edit(`\`League Status: ${args.join(' ')}\``);
-        msg.channel.send(`\`Status changed to: ${args.join(' ')}\``)
-    });
+    const setMessage = new MessageEmbed()
+    .setTitle(`${msg.author.username} Changed The League Status To: ${args.join(' ')}`)
+    .setColor('0000FF');
+
+    genChannel.send( {embeds: [setMessage]} );
+
     const writeString = args.join(' ');
     league.status = writeString;
-    writeDatbase();
+    league.color = "0000FF";
+    updateStatusChannel();
 }
