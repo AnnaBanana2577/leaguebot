@@ -24,6 +24,7 @@ const handleEndseason = require('./handlers/endseason.js');
 const handleSetstatus = require('./handlers/setStatus.js');
 const updateStatusChannel = require('./helpers/updateStatusChannel.js');
 const handleReset = require('./handlers/reset.js');
+const handleReport = require('./handlers/report.js');
 
 //Global Vars
 global.gameQueue = [];
@@ -67,11 +68,10 @@ client.on('message', message => {
             break;
         case 'report':
             if (!isSeasonrunning(message)) {break;}
-            handleReport(message);
+            handleReport(message, args);
             break;
         case 'award':
             if (!isSeasonrunning(message)) {break;}
-            if (!isArgs(argsNum, 2)) {break;}
             if (!staff) {break;}
             handleAward(message, args);
             break;
