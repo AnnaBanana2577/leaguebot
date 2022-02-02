@@ -1,7 +1,7 @@
 # Discord bot to manage an unofficial league.
 Feel free to fork this repo and make it your own, this code is GPL 3 licensed.
 
-Clone this repo
+## Clone this repo
 
 `git clone https://github.com/AnnaBanana2577/leaguebot`
 
@@ -11,26 +11,26 @@ Clone this repo
 
 Then rename .env.example to .env and plug in the the values
 
-Autoreloading dev
+## Autoreloading dev
 
 `npm run dev`
 
-Production
+## Production
 
-Pm2:
+### Pm2:
 `npm run prod`
 
-Docker:
+### Docker:
 `sudo docker build . -t <docker_id>/<repo_name>:<tag>`
 `sudo docker push <docker_id>/<repo_name>:<tag>`
 
 
-### Usage
+## Usage
 
 This discord bot works in conjuction with a discord server and some staff to run a competetive league.
 In this case, it is being used for ninja.io.
 
-#### Commands
+## Commands
 
 Add yourself to the match queue
 `!add`
@@ -47,7 +47,7 @@ Check the current league standings
 Report the result of a match
 `!report`
 
-### Staff Commands
+## Staff Commands
 
 Award points based on reported match result
 `!award <points> <player>`
