@@ -1,29 +1,29 @@
 # Discord bot to manage an unofficial league.
 Feel free to fork this repo and make it your own, this code is GPL 3 licensed.
 
-### Forking
-
 Clone this repo
 
 `git clone https://github.com/AnnaBanana2577/leaguebot`
 
-Then
-
 `cd leaguebot`
-
-And
 
 `npm install`
 
-Then start an autoreloading local dev server
+Then rename .env.example to .env and plug in the the values
+
+Autoreloading dev
 
 `npm run dev`
 
-For production
+Production
 
+Pm2:
 `npm run prod`
 
-Then rename .env.example to .env and plug in the enviroment variables
+Docker:
+`sudo docker build . -t <docker_id>/<repo_name>:<tag>`
+`sudo docker push <docker_id>/<repo_name>:<tag>`
+
 
 ### Usage
 
@@ -47,7 +47,23 @@ Check the current league standings
 Report the result of a match
 `!report`
 
-Award points based on reported match result (for staff only)
-`!award <player> <points>`
+### Staff Commands
 
-### This README is a work in progress
+Award points based on reported match result
+`!award <points> <player>`
+
+Start a new season
+`!startseason`
+
+End current season
+`!endseason`
+
+Reset the league (goes back to season 1 and resets leaderboard)
+`!reset`
+
+Clear the current match queue
+`!clear`
+
+Set the league status message
+`!setstatus <message>`
+
