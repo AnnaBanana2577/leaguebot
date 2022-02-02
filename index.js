@@ -91,6 +91,11 @@ client.on('message', message => {
             if (!staff) {break;}
             handleReset(message);
             break;
+        case 'clear':
+            if (!staff) {break;}
+            gameQueue = [];
+            message.channel.send('The queue has been cleared.');
+            break;
 }});
 
 client.on('ready', () => {

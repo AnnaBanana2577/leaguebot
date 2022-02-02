@@ -1,5 +1,5 @@
 module.exports = async (msg, args) => {
-            msg.guild.channels.create(msg.author.username, {
+            const repchannel = await msg.guild.channels.create(msg.author.username, {
                 parent: "937082916368973834",
                 type: "text", //This create a text channel, you can make a voice one too, by changing "text" to "voice"
                 permissionOverwrites: [
@@ -14,6 +14,6 @@ module.exports = async (msg, args) => {
                 }
                 ],
             });
-            msg.channel.send(`**REPORT CREATED. Please post the screenshot to #${msg.author.username} and the staff will award points**`);
+            msg.channel.send(`**REPORT CREATED. Please post the screenshot to <#${repchannel.id}> and the staff will award points**`);
         
 };

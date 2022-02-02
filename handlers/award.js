@@ -21,7 +21,7 @@ module.exports = (msg, args) => {
                 var awardedPoints = parseInt(points);
                 leaderboard[user] = awardedPoints;
             }
-            msg.Channel.send(`${user} has been awarded ${points} points`);
+            msg.channel.send(`${user} has been awarded ${points} points`);
             updateStatusChannel();
         }
         else {
