@@ -54,11 +54,11 @@ client.on('message', message => {
             if (!isSeasonrunning(message)) {break;}
             handleAdd(message)
             break;
-        case 'addtest':
-            if (!staff) {break;}
-            if (!isSeasonrunning(message)) {break;}
-            handleAddtest(message)
-            break;
+       // case 'addtest':
+          //  if (!staff) {break;}
+          //  if (!isSeasonrunning(message)) {break;}
+         //   handleAddtest(message)
+           // break;
         case 'del':
             if (!isSeasonrunning(message)) {break;}
             handleDel(message);
@@ -112,11 +112,6 @@ client.on('message', message => {
         case 'delete':
             if (!staff) {break;}
             handleDelete(message, args);
-            break;
-        case 'clear':
-            if (!staff) {break;}
-            gameQueue = [];
-            message.channel.send('The queue has been cleared.');
             break;
 }});
 
