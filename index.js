@@ -12,6 +12,10 @@ global.league = require('./data/league.json');
 global.genChannel = "";
 
 //Load Handlers
+const handleClean = require('./handlers/clean');
+const handleDelete = require('./handlers/delete.js');
+const handleClose = require('./handlers/close.js');
+const handleRemove = require('./handlers/remove');
 const handleAdd = require('./handlers/add.js');
 const handleDel = require('./handlers/del.js');
 const handleStatus = require('./handlers/status.js');
@@ -51,6 +55,7 @@ client.on('message', message => {
             handleAdd(message)
             break;
         case 'addtest':
+            if (!staff) {break;}
             if (!isSeasonrunning(message)) {break;}
             handleAddtest(message)
             break;
@@ -77,19 +82,36 @@ client.on('message', message => {
             break;
         case 'startseason':
             if (!staff) {break;}
+            if (message.author.id !== '511603215591276584') {break;}
             handleStartseason(message);
             break;
         case 'endseason':
             if (!staff) {break;}
+            if (message.author.id !== '511603215591276584') {break;}
             handleEndseason(message);
             break;
         case 'setstatus':
             if (!staff) {break;}
+            if (message.author.id !== '511603215591276584') {break;}
             handleSetstatus(message, args);
             break;
         case 'reset':
             if (!staff) {break;}
+            if (message.author.id !== '511603215591276584') {break;}
             handleReset(message);
+            break;
+        case 'remove':
+            if (!staff) {break;}
+            if (message.author.id !== '511603215591276584') {break;}
+            handleRemove(message, args);
+            break;
+        case 'close':
+            if (!staff) {break;}
+            handleClose(message);
+            break;
+        case 'delete':
+            if (!staff) {break;}
+            handleDelete(message, args);
             break;
         case 'clear':
             if (!staff) {break;}

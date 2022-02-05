@@ -1,4 +1,5 @@
 const updateStatusChannel = require('../helpers/updateStatusChannel');
+const sanitizeName = require('../helpers/sanitizeName');
 
 module.exports = (msg, args) => {
     if (args.length < 2) {
@@ -7,7 +8,7 @@ module.exports = (msg, args) => {
     else {
         let points = args[0];
         args.shift();
-        let user = args.join(' ');
+        let user = sanitizeName(args.join(' '));
         let currentPoints = 0;
 
         if(isFinite(points)){

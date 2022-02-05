@@ -1,12 +1,7 @@
 const { MessageEmbed } = require('discord.js');
 
 module.exports = (msg) => {
-    const helpMessage = new MessageEmbed()
-    .setTitle("BOT COMMANDS")
-    .addField('Player Commands', '!add to add \n!del to remove \n!status to check the queue \n!report to report the result of a match')
-    .addField('Staff Commands', '!startseason to start a season \n!endseason to end a season \n!reset to reset everything \n!award <points> <user> to award points')
-    .setColor('0000FF');
-
-    msg.channel.send({ embeds: [helpMessage] });
-   // msg.channel.send(`Use **!add** to add yourself to the match queue \nUse **!del** to remove youself from the match queue \nUse **!status** to get the status of the match queue`);
+    client.users.fetch(msg.author.id, false).then((user) => {
+        user.send("**How The League Works**\n\nThe Ninja Competitive League runs in periods of 4 weeks (called seasons). During the season, anyone may freely queue up to play a league match. Points are awarded to players based on the outcome (see the awarding points section). At the end of the 4 week season, the winner (who has the most points) is crowned as the champion and receives a championship (a season champion role) to brag about.\n\n__Awarding Points__\nPoints are to all players of a league match as follows:\n-- 1 points to every player\n-- 2 points to every player on the winning team\n-- 2 points to the player on the winning team with the most flag captures\n-- 2 points to the player on the winning team with the most kills\n\n**How To Play**\n\nTo play a league match, type !add in the #general channel. This will add you to a queue. Please make sure you only add if you have enough time to complete a match.\n\nOnce 6 players are added, the game starts. @League Bot#9859 will DM every player with the server information. Everyone then joins and plays a match. @League Bot#9859 will randomly choose 1 player to be the 'Captain', who has extra responsibilities.\n\n__Captain Responsibilities__\nIf you are chosen by @League Bot#9859 to be the game 'Captain', you are in charge of 2 things:\n-- Creating the server (the bot will DM you with what to name the server and what to set the password as)\n-- Posting a screenshot of the match score. To post a screenshot, type !report in #general. This will create a match report channel with your name, post the screenshot there.\n\n**Bot Commands**\nLearn about the league and commands\n`!help`\n\nAdd yourself to the queue\n`!add`\n\nRemove yourself from the queue\n`!del`\n\nCheck the status of the queue\n`!status`\n\nCheck the leaderboard\n`!leaderboard`\n\nReport a match\n`!report`");
+       });
 };
